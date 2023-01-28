@@ -53,52 +53,64 @@
 // --------------------------------------------------------------------------------------------------------
 
 
-function addSpace(res, index, width, result){
-  res = res.split('');
+function addSpace(res, index, width){
+  if(typeof res == "string"){
+    res = res.split('')
+  }
 
-  console.log(`res.length`, res.length, width, `width`);
+  console.log(`res.length`, res.length,  `width -`, width);
 
   for(let y = 0; y < res.length; y++){
     console.log(res[y]);
     if(res.length < width){
+      console.log(`res[y] == index?`, res[y] == index, `index- `, index, index.length)
       console.log(`hello1`);
-      console.log(`index`, index);
-      console.log(`res[y] == index?`, res[y] == index)
       if(res[y] == index){
         console.log(`hello2`)
         res[y] = res[y] + index;
-        console.log(`res{y} + ineex`, res[y]);
+        console.log(`res{y} + index`, res[y]);
       }
     }
 
       if(res.join('').length == width){
         
-        res.push('/n');
-        result.push(res);
-
-        console.log(`result.length`, result.length);
+        res.push('\n');
+        console.log(`res`, res)
+        // result.push(res);
+        // console.log(`result`, result)
+        // console.log(`result.length`, result.length);
         break
     }
   }
 
+  if(res.join('').length < width){
+    index = index.toString() + ' ';
+    addSpace(res, index, width)
+  }
 
-
-  index = index + ' '
-  console.log(`index at end of function`, index)
-  return  res, index,  result //????????????????????????????????????????????????????????????????/
+  res = res.join('')
+  console.log(`res2`, res)
+  // console.log(`result2`, result)
+  console.log(`index at end of function -`,index)
+  return res
 }
 
-let spaceChecker = addSpace('123 45', ' ', 7, []).join('');
-console.log(`spaceCheker`, spaceChecker)
-///////////////////////////////////////////////////////////////////////////////
+// let spaceChecker = addSpace('123 45', ' ', 7);
+// console.log(`spaceCheker`, spaceChecker)
+// ///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 function justify(text, width) {
-  console.log(`width`, width)
+  console.log(`width -`, width)
   
   let result = [];
 
   if(text.length <= 1){
-    result = text
+    result = text.toString()
     return result;
   }
 
@@ -116,44 +128,47 @@ function justify(text, width) {
       res.pop();
       break
     } else if(res.join(' ').length == width){
-      text.splice(0, i)
+      text.splice(0, i+1)
       break
     }
   }
 
   res = res.join(' '); 
-  console.log(`res after cut`, res);
-  console.log(`text after cut`, text)
+  console.log(`res after cut -`, res);
+  console.log(`text after cut -`, text)
 
-  console.log(`res.length`, res.length, `res.length == width?`, res.length == width)
+  console.log(`res.length -`, res.length, `res.length == width? -`, res.length == width, `width -`, width)
 
-     console.log(`res.length`, res.length, `width`, width)
+  // if(res.length == width) {
+  //   console.log(`res 142`, res)
+  //   result.push(res);
+  //  } 
 
-  if(res.length == width) {
-    res = res + '/n';
-    result.push(res);
-   } 
-   else if(res.length < width){
+   if(res.length < width){
 
-      let index = ' ';
-      console.log(`res`, res)
-      console.log(`hello`)
-      console.log(`res.length`, res.length, `width`, width)
-      addSpace(res, width, index, result)
-      console.log(`addSpace(res, width, index, result)`, addSpace(res, width, index, result))
+      let index;
+      index = ' ';
+      console.log(`res -`, res)
+      console.log(`hello -`)
+      console.log(`res.length -`, res.length, `width - `, width)
+      res = addSpace(res, index, width)
+      console.log(`addSpace(res, width, index, result) -`, addSpace(res, index, width))
+      console.log(`res after add - `, res)
   }
   
+  result.push(res);
+  console.log(`result4-`, result);
+  console.log(`res -`, res);
 
+  console.log(`text.length < width -`, text.length < width);
+  if(text.length < width){
+    result.push(justify(text.toString(), width));
+  } // ???????????????????????????????????????dasdfafasfasf aosfh au WATCH HERE MOTHERFUCKE ???????????????????????????????????????????????????
+  //-----------------------------------------------------------------------------------------------------------------------------
   
-  console.log(`res`, res)
-
-  
-  if(text < width){
-    result.push(justify(text, width));
-  }
-  
-  result = result.join('')
-  console.log(`result`, result)
+  console.log(`result3`, result);
+  result = result.join('');
+  console.log(`result -`, result);
 
   return result 
 }
@@ -162,4 +177,8 @@ let check = '123 45 6';
 let width = 7;
 let answer = justify(check, width);
 
-console.log(`answer`, answer)
+console.log(`answer -`, answer);
+
+let lorem = 'tttt tt ttterterte etrter terert ertert terterer ertertertert ert erterterte ertertert ertertert ertertert';
+
+console.log(justify(lorem, 10))
