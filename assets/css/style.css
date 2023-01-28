@@ -1,0 +1,42 @@
+*{
+    --bg-new: tomato;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: var(--bg-new);
+    min-height: 100vh;
+    text-align: center;
+    width: 100vw;
+
+}
+
+main.main{
+    margin: 3rem auto;
+    text-align: center;
+    width: 500px;
+    height: 50px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+main.main::before{
+    content: "";
+    display: inline-block;
+    width: 500px;
+    height: 50px;
+    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    position: absolute;
+    left: 0;
+    z-index: -1;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+main.main:hover::before{
+    transition: 0.5s;
+    left: calc(50% - 242px);
+    overflow-x: hidden;
+    opacity: 1;
+}
