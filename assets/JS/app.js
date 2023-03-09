@@ -106,6 +106,7 @@ function addSpace(res, index, width){
 
 function justify(text, width) {
   console.log(`width -`, width)
+  console.log(`type of text`, typeof text, `text`, text)
   
   let result = [];
 
@@ -134,6 +135,7 @@ function justify(text, width) {
   }
 
   res = res.join(' '); 
+  text = text.join(' ')
   console.log(`res after cut -`, res);
   console.log(`text after cut -`, text)
 
@@ -182,3 +184,4 @@ console.log(`answer -`, answer);
 let lorem = 'tttt tt ttterterte etrter terert ertert terterer ertertertert ert erterterte ertertert ertertert ertertert';
 
 console.log(justify(lorem, 10))
+
